@@ -7,10 +7,8 @@ public class kadai1 {
         Scanner scanf = new Scanner(System.in);
         String nyuuryoku;
         int[] scores = null; // 入力に合わせて後でサイズ決定
-        int[] total = null;
 
         while (true) {
-        	int count = 0;
             System.out.print("Input >");
             nyuuryoku = scanf.nextLine();
 
@@ -32,15 +30,17 @@ public class kadai1 {
             // スコア用配列を入力数に合わせて作成
             scores = new int[kansei.length];
             
+            boolean ok = true;
+            
             for (int i = 0; i < kansei.length; i++) {
                 scores[i] = Integer.parseInt(kansei[i]);
-                if(scores[i] <=0) {
+                if(scores[i] <= 0) {
                 	System.out.println("入力された数値が０以下です。再度入力してください。");
-                	count = 5;
+                	ok = false;
                 	continue;
                 }
             }
-            if (count != 5) {
+            if (ok == true) {
             	break;
             }
         }
@@ -48,13 +48,9 @@ public class kadai1 {
 
         // horu.length(18ホール) と scores.length の小さい方まで表示
         int len = Math.min(horu.length, scores.length);
-
-        len = Math.min(horu.length, scores.length);
         int totalScore = 0;
-        total = new int[len];
         for (int i = 0; i < len; i++) {
-        	total[i] = scores[i] - horu[i];
-            totalScore += total[i];
+        	totalScore += scores[i] - horu[i];
         }
 
         System.out.printf("Output > %dホール終了して、%d です。\n", len, totalScore);
